@@ -4,6 +4,9 @@ import {auth} from '@/lib/firebase'
 import {useAuthStore} from "@/stores/authStore";
 import {useRouter} from 'next/navigation'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import {IconType} from 'react-icons'
 import cardMap from "@/lib/cardsMap";
 
@@ -30,25 +33,28 @@ export default function AdminPage() {
 
   if (loading) return <p>Loading...</p>
 
-  // console.log(111, cardMap['10S'])
-
   return (
-    <div>
+    <Box>
       <h1>Admin page</h1>
-      <ul>
+      <Grid container spacing={0} sx={{border: '2px solid dodgerblue'}}>
         {envelopes.map((envelope, idx) => {
           // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
           const Icon: IconType = cardMap[envelope.card] || null
-
+          console.log(111, envelope)
           return (
-            <li key={idx}>
-              {Icon && <Icon/>}
-              {envelope.card} - {envelope.isPicked ? "Picked" : "Available"}
-              <button onClick={() => togglePicked(envelope.id, !envelope.isPicked)}>Toggle</button>
-            </li>
+            <Grid key={idx} item xs={2} sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              border: '2px solid orange'
+            }}>
+              {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}
+              <Typography variant='h5'>{envelope.number}</Typography>
+            </Grid>
           )
         })}
-      </ul>
-    </div>
+      </Grid>
+    </Box>
   )
 }
