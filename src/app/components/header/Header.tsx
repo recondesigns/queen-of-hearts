@@ -1,8 +1,8 @@
 'use client'
-import { auth } from '@/lib/firebase'
-import { signOut } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
-import { useAuthStore } from "@/stores/authStore";
+import {auth} from '@/lib/firebase'
+import {signOut} from 'firebase/auth'
+import {useRouter} from 'next/navigation'
+import {useAuthStore} from "@/stores/authStore";
 import Button from '@mui/material/Button'
 
 const headerStyles = {
@@ -13,7 +13,7 @@ const headerStyles = {
 }
 
 export default function Header() {
-  const { user, loading, logout } = useAuthStore()
+  const {user} = useAuthStore()
   const router = useRouter()
 
   const handleSignOut = () => {
@@ -32,7 +32,12 @@ export default function Header() {
   return (
     <header style={headerStyles}>
       <p>Queen of Hearts</p>
-      <Button variant='contained' onClick={!user ? handleSignIn : handleSignOut}>{!user ? 'Sign in' : 'Sign out'}</Button>
+      <Button
+        variant='contained'
+        onClick={!user ? handleSignIn : handleSignOut}
+      >
+        {!user ? 'Sign in' : 'Sign out'}
+      </Button>
     </header>
   )
 }

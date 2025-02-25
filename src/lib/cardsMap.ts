@@ -1,4 +1,4 @@
-import { GiCard8Spades, GiCard10Spades, GiCardKingDiamonds } from "react-icons/gi";
+import {GiCard10Spades, GiCard8Spades, GiCardKingDiamonds} from "react-icons/gi";
 
 const cardMap = {
   '8S': GiCard8Spades,

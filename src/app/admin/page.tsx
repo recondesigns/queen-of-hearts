@@ -1,16 +1,15 @@
 'use client'
 import React from 'react'
-import { auth } from '@/lib/firebase'
-import { useAuthStore} from "@/stores/authStore";
-import { useRouter } from 'next/navigation'
+import {auth} from '@/lib/firebase'
+import {useAuthStore} from "@/stores/authStore";
+import {useRouter} from 'next/navigation'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
-// import { FaBeer } from "react-icons/fa"
-// import { GiCard10Spades } from "react-icons/gi";
+import {IconType} from 'react-icons'
 import cardMap from "@/lib/cardsMap";
 
 export default function AdminPage() {
-  const { envelopes, fetchEnvelopes, togglePicked } = useEnvelopeStore()
-  const { user, loading } = useAuthStore()
+  const {envelopes, fetchEnvelopes, togglePicked} = useEnvelopeStore()
+  const {user, loading} = useAuthStore()
   const router = useRouter()
 
   React.useEffect(() => {
@@ -38,11 +37,12 @@ export default function AdminPage() {
       <h1>Admin page</h1>
       <ul>
         {envelopes.map((envelope, idx) => {
+          // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
           const Icon: IconType = cardMap[envelope.card] || null
 
           return (
             <li key={idx}>
-              {Icon && <Icon />}
+              {Icon && <Icon/>}
               {envelope.card} - {envelope.isPicked ? "Picked" : "Available"}
               <button onClick={() => togglePicked(envelope.id, !envelope.isPicked)}>Toggle</button>
             </li>
