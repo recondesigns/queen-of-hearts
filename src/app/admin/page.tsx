@@ -26,7 +26,7 @@ export default function AdminPage() {
     })
 
     return () => unsubscribe()
-  }, [])
+  }, [fetchEnvelopes, router])
 
   if (loading) return <p>Loading...</p>
 
