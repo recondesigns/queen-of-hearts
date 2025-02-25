@@ -10,6 +10,23 @@ import Typography from '@mui/material/Typography'
 import {IconType} from 'react-icons'
 import cardMap from "@/lib/cardsMap";
 
+const convertSuit = (suit: string) => {
+  switch(suit) {
+    case 'clubs':
+      return 'C'
+    case 'diamonds':
+      return 'D'
+    case 'hearts':
+      return 'H'
+    case 'spades':
+      return 'S'
+    default:
+      return null
+  }
+}
+
+const setCardIdentifier = (value: string, suit: string) => `${value}${convertSuit(suit)}`
+
 export default function AdminPage() {
   const {envelopes, fetchEnvelopes, togglePicked} = useEnvelopeStore()
   const {user, loading} = useAuthStore()
@@ -39,18 +56,24 @@ export default function AdminPage() {
       <Grid container spacing={0} sx={{border: '2px solid dodgerblue'}}>
         {envelopes.map((envelope, idx) => {
           // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
-          const Icon: IconType = cardMap[envelope.card] || null
-          console.log(111, envelope)
+          const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
           return (
             <Grid key={idx} item xs={2} sx={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               alignItems: 'center',
-              border: '2px solid orange'
+              flexWrap: 'wrap',
+              border: '1px solid #171717',
+              borderRadius: '6px'
             }}>
-              {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}
-              <Typography variant='h5'>{envelope.number}</Typography>
+              <Box sx={{ }}>
+                <Typography variant='h6'>{envelope.number}</Typography>
+                {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}
+              </Box>
+              {/*<button*/}
+              {/*  onClick={() => togglePicked(envelope.id, true, 'Queen of Hearts', 'hearts', 'Q')}>Update*/}
+              {/*</button>*/}
             </Grid>
           )
         })}
