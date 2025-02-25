@@ -1,6 +1,6 @@
-import { create } from 'zustand'
-import { db } from '../lib/firebase'
-import { collection, getDocs, updateDoc, doc } from "@firebase/firestore";
+import {create} from 'zustand'
+import {db} from '../lib/firebase'
+import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
 
 type Envelope = {
   id: string,
@@ -25,23 +25,14 @@ export const useEnvelopeStore = create<EnvelopStore>((set) => ({
       ...doc.data()
     })) as Envelope[]
 
-    // const envelopes2 = snapshot.docs.map((doc) => {
-    //   console.log(doc)
-    //   return ({
-    //    thing1: "thing2"
-    //   })
-    // })
-    //
-    // console.log(envelopes2)
-
-    set({ envelopes })
+    set({envelopes})
   },
   togglePicked: async (id, isPicked) => {
     const envelopeRef = doc(db, 'envelopes', id)
-    await updateDoc(envelopeRef, { isPicked })
+    await updateDoc(envelopeRef, {isPicked})
 
     set((state) => ({
-      envelopes: state.envelopes.map((e) => e.id === id ? { ...e, isPicked } :  e)
+      envelopes: state.envelopes.map((e) => e.id === id ? {...e, isPicked} : e)
     }))
   }
 }))

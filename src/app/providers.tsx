@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-// import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import { useAuthStore} from "@/stores/authStore";
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -12,9 +11,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/*<AppRouterCacheProvider>*/}
-        {children}
-      {/*</AppRouterCacheProvider>*/}
+      {children}
     </>
   )
 }

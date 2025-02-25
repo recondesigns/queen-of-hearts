@@ -13,13 +13,13 @@ export default function Home() {
   return (
     <div>
       <h1>Envelope list</h1>
-      <ul>
+      <div>
         {envelopes.map((envelope, idx) => (
-          <li key={idx}>
+          <div key={idx}>
             {envelope.card} - {envelope.isPicked ? "Picked" : "Available"}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
