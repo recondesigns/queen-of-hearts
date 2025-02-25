@@ -9,7 +9,6 @@ const headerStyles = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  // border: '2px solid orange'
 }
 
 export default function Header() {
