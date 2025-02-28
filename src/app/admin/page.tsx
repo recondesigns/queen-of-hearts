@@ -12,7 +12,7 @@ import {IconType} from 'react-icons'
 import cardMap from "@/lib/cardsMap";
 
 const convertSuit = (suit: string) => {
-  switch(suit) {
+  switch (suit) {
     case 'clubs':
       return 'C'
     case 'diamonds':
@@ -55,11 +55,11 @@ export default function AdminPage() {
     <Box>
       <h1>Admin page</h1>
       <Grid container spacing={2} sx={{border: '2px solid dodgerblue'}}>
-        {envelopes.map((envelope, idx) => {
+        {envelopes.sort((a, b) => a.number - b.number).map((envelope, idx) => {
           // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
           const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
           return (
-            <Grid key={idx} size={2} sx={{
+            <Grid key={idx} size={3} sx={{
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -68,7 +68,7 @@ export default function AdminPage() {
               border: '1px solid #171717',
               borderRadius: '6px'
             }}>
-              <Box sx={{ }}>
+              <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <Typography variant='h6'>{envelope.number}</Typography>
                 {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}
               </Box>
@@ -78,6 +78,29 @@ export default function AdminPage() {
             </Grid>
           )
         })}
+        {/*{envelopes.map((envelope, idx) => {*/}
+        {/*  // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type*/}
+        {/*  const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null*/}
+        {/*  return (*/}
+        {/*    <Grid key={idx} size={3} sx={{*/}
+        {/*      display: 'flex',*/}
+        {/*      flexDirection: 'column',*/}
+        {/*      justifyContent: 'space-between',*/}
+        {/*      alignItems: 'center',*/}
+        {/*      flexWrap: 'wrap',*/}
+        {/*      border: '1px solid #171717',*/}
+        {/*      borderRadius: '6px'*/}
+        {/*    }}>*/}
+        {/*      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>*/}
+        {/*        <Typography variant='h6'>{envelope.number}</Typography>*/}
+        {/*        {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}*/}
+        {/*      </Box>*/}
+        {/*      /!*<button*!/*/}
+        {/*      /!*  onClick={() => togglePicked(envelope.id, true, 'Queen of Hearts', 'hearts', 'Q')}>Update*!/*/}
+        {/*      /!*</button>*!/*/}
+        {/*    </Grid>*/}
+        {/*  )*/}
+        {/*})}*/}
       </Grid>
     </Box>
   )
