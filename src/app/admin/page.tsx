@@ -5,7 +5,8 @@ import {useAuthStore} from "@/stores/authStore";
 import {useRouter} from 'next/navigation'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
+// import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography'
 import {IconType} from 'react-icons'
 import cardMap from "@/lib/cardsMap";
@@ -53,12 +54,12 @@ export default function AdminPage() {
   return (
     <Box>
       <h1>Admin page</h1>
-      <Grid container spacing={0} sx={{border: '2px solid dodgerblue'}}>
+      <Grid container spacing={2} sx={{border: '2px solid dodgerblue'}}>
         {envelopes.map((envelope, idx) => {
           // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
           const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
           return (
-            <Grid key={idx} item xs={2} sx={{
+            <Grid key={idx} size={2} sx={{
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
