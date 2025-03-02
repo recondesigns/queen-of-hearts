@@ -41,8 +41,21 @@ import {
   GiCardQueenHearts,
   GiCardKingHearts,
   // GiCardQueenHearts,
+  GiCardAceSpades,
+  GiCard2Spades,
+  GiCard3Spades,
+  GiCard4Spades,
+  GiCard5Spades,
+  GiCard6Spades,
+  GiCard7Spades,
+  GiCard8Spades,
+  GiCard9Spades,
   GiCard10Spades,
-  GiCard8Spades
+  GiCardJackSpades,
+  GiCardQueenSpades,
+  GiCardKingSpades,
+  // GiCard10Spades,
+  // GiCard8Spades
 } from "react-icons/gi";
 
 const cardMap = {
@@ -88,8 +101,21 @@ const cardMap = {
   'QH': GiCardQueenHearts,
   'KH': GiCardKingHearts,
   // 'QH': GiCardQueenHearts,
+  'AS': GiCardAceSpades,
+  '2S': GiCard2Spades,
+  '3S': GiCard3Spades,
+  '4S': GiCard4Spades,
+  '5S': GiCard5Spades,
+  '6S': GiCard6Spades,
+  '7S': GiCard7Spades,
   '8S': GiCard8Spades,
+  '9S': GiCard9Spades,
   '10S': GiCard10Spades,
+  'JS': GiCardJackSpades,
+  'QS': GiCardQueenSpades,
+  'KS': GiCardKingSpades,
+  // '8S': GiCard8Spades,
+  // '10S': GiCard10Spades,
 }
 
 export default cardMap
