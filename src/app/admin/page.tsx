@@ -56,6 +56,7 @@ export default function AdminPage() {
       <h1>Admin page</h1>
       <Grid container spacing={2} sx={{border: '2px solid dodgerblue'}}>
         {envelopes.sort((a, b) => a.number - b.number).map((envelope, idx) => {
+          console.log(envelope)
           // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
           const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
           return (
