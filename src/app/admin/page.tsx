@@ -5,7 +5,6 @@ import {useAuthStore} from "@/stores/authStore";
 import {useRouter} from 'next/navigation'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
 import Box from '@mui/material/Box'
-// import Grid from '@mui/material/Grid'
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography'
 import {IconType} from 'react-icons'
@@ -58,17 +57,12 @@ export default function AdminPage() {
         {envelopes.sort((a, b) => a.number - b.number).map((envelope, idx) => {
           // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
           const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
+
+          const getCardColor = (string: string) => (string.endsWith('C') || string.endsWith('S') ? 'black' : 'red')
+
           return (
             <Grid key={idx} size={3} sx={{
               height: '120px',
-              // padding: '0px',
-              // margin: '0px',
-              // width: '100%',
-              // display: 'flex',
-              // flexDirection: 'column',
-              // justifyContent: 'space-between',
-              // alignItems: 'center',
-              // flexWrap: 'wrap',
               border: '1px solid #171717',
               borderRadius: '6px'
             }}>
@@ -86,10 +80,7 @@ export default function AdminPage() {
                   fontSize: '64px',
                   lineHeight: '64px',
                   textAlign: 'center',
-                  // border: '1px solid red'
-                }}>{<Icon color={'red'}/>}</p>}
-
-                {/*{envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}*/}
+                }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
               </Box>
               {/*<button*/}
               {/*  onClick={() => togglePicked(envelope.id, true, 'Queen of Hearts', 'hearts', 'Q')}>Update*/}
@@ -97,29 +88,6 @@ export default function AdminPage() {
             </Grid>
           )
         })}
-        {/*{envelopes.map((envelope, idx) => {*/}
-        {/*  // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type*/}
-        {/*  const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null*/}
-        {/*  return (*/}
-        {/*    <Grid key={idx} size={3} sx={{*/}
-        {/*      display: 'flex',*/}
-        {/*      flexDirection: 'column',*/}
-        {/*      justifyContent: 'space-between',*/}
-        {/*      alignItems: 'center',*/}
-        {/*      flexWrap: 'wrap',*/}
-        {/*      border: '1px solid #171717',*/}
-        {/*      borderRadius: '6px'*/}
-        {/*    }}>*/}
-        {/*      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>*/}
-        {/*        <Typography variant='h6'>{envelope.number}</Typography>*/}
-        {/*        {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}*/}
-        {/*      </Box>*/}
-        {/*      /!*<button*!/*/}
-        {/*      /!*  onClick={() => togglePicked(envelope.id, true, 'Queen of Hearts', 'hearts', 'Q')}>Update*!/*/}
-        {/*      /!*</button>*!/*/}
-        {/*    </Grid>*/}
-        {/*  )*/}
-        {/*})}*/}
       </Grid>
     </Box>
   )
