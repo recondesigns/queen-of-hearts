@@ -8,14 +8,14 @@ export type Envelope = {
   isPicked: boolean
 }
 
-export type EnvelopStore = {
+export type EnvelopeStore = {
   envelopes: Envelope[],
   fetchEnvelopes: () => Promise<void>,
   togglePicked: (id: string, isPicked: boolean, name: string, suit: string, value: string) => Promise<void>
 }
 
 
-export const useEnvelopeStore = create<EnvelopStore>((set) => ({
+export const useEnvelopeStore = create<EnvelopeStore>((set) => ({
   envelopes: [],
   fetchEnvelopes: async () => {
 
