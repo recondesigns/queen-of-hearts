@@ -6,9 +6,10 @@ import {useRouter} from 'next/navigation'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
 import {usePotValueStore} from "@/stores/potValueStore";
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 import PotDisplay  from "../components/pot-display/PotDisplay";
 import CardDisplay from '../components/card-display/CardDisplay'
-import Button from '@mui/material/Button'
 import UpdatePotValueModal from './UpdatePotValueModal';
 
 export default function AdminPage() {
@@ -44,17 +45,10 @@ export default function AdminPage() {
   return (
     <Box>
       <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
-      <h1>Admin page</h1>
+      <Typography variant={'h5'} component={'p'}>Admin page</Typography>
       <PotDisplay potValue={potValue} />
       <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
       <CardDisplay envelopes={envelopes} isAdmin={true} />
     </Box>
   )
-}
-
-{/*<button*/
-}
-{/*  onClick={() => togglePicked(envelope.id, true, 'Queen of Hearts', 'hearts', 'Q')}>Update*/
-}
-{/*</button>*/
 }
