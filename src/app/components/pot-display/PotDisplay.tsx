@@ -2,10 +2,14 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 
-const PotDisplay = () => {
+export type PotDisplayProps = {
+  potValue: number;
+}
+
+const PotDisplay = ({potValue}: PotDisplayProps) => {
   return (
     <>
-      <Typography variant={'body1'}>Pot display</Typography>
+      <Typography variant={'body1'}>{!potValue ? 'Loading...' : `$${potValue.toLocaleString()}`}</Typography>
     </>
   )
 }
