@@ -45,9 +45,9 @@ export default function AdminPage() {
     <Box>
       <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
       <h1>Admin page</h1>
-      <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
       <PotDisplay potValue={potValue} />
-      <CardDisplay envelopes={envelopes} isAdmin={true}/>
+      <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
+      <CardDisplay envelopes={envelopes} isAdmin={true} />
     </Box>
   )
 }
