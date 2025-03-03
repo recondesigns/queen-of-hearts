@@ -25,10 +25,11 @@ const convertSuit = (suit: string) => {
 const setCardIdentifier = (value: string, suit: string) => `${value}${convertSuit(suit)}`
 
 type CardDisplayProps = {
-  envelopes: Envelope[],
+  isAdmin?: boolean;
+  envelopes: Envelope[];
 }
 
-const CardDisplay = ({envelopes}: CardDisplayProps) => {
+const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
   return (
     <>
       <Box>
@@ -43,25 +44,74 @@ const CardDisplay = ({envelopes}: CardDisplayProps) => {
               <>
                 <Grid key={idx} size={3} sx={{
                   height: '120px',
-                  border: '1px solid #171717',
-                  borderRadius: '6px'
+                  // border: '1px solid #171717',
+                  // borderRadius: '6px'
                 }}>
-                  <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
-                    <Typography variant='h6'>{envelope.number}</Typography>
-                    {envelope.isPicked && <p style={{
-                      margin: '0px',
-                      padding: '0px',
+                  {isAdmin ? (
+                    <Box
+                      component={'button'}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        background: '#FFFFFF',
+                        border: '2px solid #171717',
+                        borderRadius: '6px'
+                      }}
+                      onClick={() => alert('clicked')}
+                    >
+                      <Typography variant='h6'>{envelope.number}</Typography>
+                      {envelope.isPicked && <p style={{
+                        margin: '0px',
+                        padding: '0px',
+                        width: '100%',
+                        fontSize: '64px',
+                        lineHeight: '64px',
+                        textAlign: 'center',
+                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                    </Box>
+                  ) : (
+                    <Box sx={{
                       width: '100%',
-                      fontSize: '64px',
-                      lineHeight: '64px',
-                      textAlign: 'center',
-                    }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
-                  </Box>
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      background: '#FFFFFF',
+                      border: '2px solid #171717',
+                      borderRadius: '6px'
+                    }}>
+                      <Typography variant='h6'>{envelope.number}</Typography>
+                      {envelope.isPicked && <p style={{
+                        margin: '0px',
+                        padding: '0px',
+                        width: '100%',
+                        fontSize: '64px',
+                        lineHeight: '64px',
+                        textAlign: 'center',
+                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                    </Box>
+                  )}
+                  {/*<Box sx={{*/}
+                  {/*  display: 'flex',*/}
+                  {/*  flexDirection: 'column',*/}
+                  {/*  justifyContent: 'center',*/}
+                  {/*  alignItems: 'center'*/}
+                  {/*}}>*/}
+                  {/*  <Typography variant='h6'>{envelope.number}</Typography>*/}
+                  {/*  {envelope.isPicked && <p style={{*/}
+                  {/*    margin: '0px',*/}
+                  {/*    padding: '0px',*/}
+                  {/*    width: '100%',*/}
+                  {/*    fontSize: '64px',*/}
+                  {/*    lineHeight: '64px',*/}
+                  {/*    textAlign: 'center',*/}
+                  {/*  }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}*/}
+                  {/*</Box>*/}
                 </Grid>
               </>
             )
