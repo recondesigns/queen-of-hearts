@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import {usePotValueStore} from "@/stores/potValueStore";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -23,10 +24,16 @@ type UpdatePotValueModalProps = {
 }
 
 const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
+  const {updatePotValue} = usePotValueStore()
   const [newValue, setNewValue] = React.useState<number | null>(null)
 
   const handleNewValueChange = (e) => {
     setNewValue(e.target.value)
+  }
+
+  const handleSavePotValue = () => {
+    updatePotValue(newValue)
+    onClose()
   }
 
   return (
@@ -49,7 +56,7 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
               onChange={handleNewValueChange}
             />
           </Box>
-          <Button variant={'contained'}>Save value</Button>
+          <Button variant={'contained'} onClick={handleSavePotValue}>Save value</Button>
           <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
         </Box>
       </Modal>

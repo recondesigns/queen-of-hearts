@@ -1,6 +1,6 @@
 import {create} from 'zustand'
 import {db} from '../lib/firebase'
-import {collection, doc, getDocs, updateDocs} from '@firebase/firestore'
+import {collection, doc, getDocs, updateDoc} from '@firebase/firestore'
 
 export type Value = {
   value: number;
@@ -9,6 +9,7 @@ export type Value = {
 export type PotValueStore = {
   potValue: number;
   fetchPotValue: () => void;
+  updatePotValue: (newValue: number) => Promise<void>
 }
 
 export const usePotValueStore = create<PotValueStore>((set) => ({
@@ -22,5 +23,13 @@ export const usePotValueStore = create<PotValueStore>((set) => ({
     }))
 
     set({potValue: potValues[0].value})
+  },
+  updatePotValue: async (newValue: number) => {
+    const updatedDate = new Date().toISOString().split('T')[0]
+    const valueRef = doc(db, 'pot-value', 'Myzm1VZI6dn9wybORvpc')
+
+    await updateDoc(valueRef, {value: newValue, updatedDate})
+
+    set({potValue: newValue})
   }
 }))
