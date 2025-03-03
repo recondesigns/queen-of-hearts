@@ -4,6 +4,9 @@ import {useEnvelopeStore} from "@/stores/envelopeStore";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 import TextField from "@mui/material/TextField";
 
 const style = {
@@ -24,7 +27,22 @@ type UpdatePotValueModalProps = {
 }
 
 const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
-  const {selectedEnvelope} = useEnvelopeStore()
+  const {selectedEnvelope, togglePicked} = useEnvelopeStore()
+  const [cardValue, setCardValue] = React.useState<string>('')
+  const [cardName, setCardName] = React.useState<string>('')
+  const [cardSuit, setCardSuit] = React.useState<string>('')
+
+  const handleSuitSelectChange = (e: SelectChangeEvent) => {
+    setCardSuit(e.target.value)
+  }
+
+  const handleSaveCardUpdate = () => {
+    togglePicked(selectedEnvelope.id, true, cardName, cardSuit, cardValue)
+    setCardValue('')
+    setCardName('')
+    setCardSuit('')
+    onClose()
+  }
 
   return (
     <>
@@ -37,14 +55,34 @@ const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
             noValidate
             autoComplete="off"
           >
+            <InputLabel id="suit-select-label">Suit</InputLabel>
+            <Select
+              labelId="suit-select-label"
+              id="suit-select"
+              value={cardSuit}
+              onChange={handleSuitSelectChange}
+            >
+              <MenuItem value={'clubs'}>Clubs</MenuItem>
+              <MenuItem value={'diamonds'}>Diamonds</MenuItem>
+              <MenuItem value={'hearts'}>Hearts</MenuItem>
+              <MenuItem value={'spades'}>Spades</MenuItem>
+            </Select>
+            <InputLabel id="card-name-label">Name</InputLabel>
             <TextField
-              id="new-value"
-              label="New value"
+              id="card-name"
               variant="outlined"
-              type={'number'}
+              value={cardName}
+              onChange={(e) => setCardName(e.target.value)}
+            />
+            <InputLabel id="card-value-label">Value</InputLabel>
+            <TextField
+              id="card-value"
+              variant="outlined"
+              value={cardValue}
+              onChange={(e) => setCardValue(e.target.value)}
             />
           </Box>
-          <Button variant={'contained'}>Save value</Button>
+          <Button variant={'contained'} onClick={handleSaveCardUpdate}>Save value</Button>
           <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
         </Box>
       </Modal>
