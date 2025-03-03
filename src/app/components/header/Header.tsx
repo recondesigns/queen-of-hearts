@@ -1,9 +1,10 @@
 'use client'
-import {auth} from '@/lib/firebase'
-import {signOut} from 'firebase/auth'
-import {useRouter} from 'next/navigation'
-import {useAuthStore} from "@/stores/authStore";
-import Button from '@mui/material/Button'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+// import {auth} from '@/lib/firebase'
+// import {signOut} from 'firebase/auth'
+// import {useRouter} from 'next/navigation'
+// import {useAuthStore} from "@/stores/authStore";
 
 const headerStyles = {
   display: 'flex',
@@ -12,31 +13,25 @@ const headerStyles = {
 }
 
 export default function Header() {
-  const {user} = useAuthStore()
-  const router = useRouter()
+  // const {user} = useAuthStore()
+  // const router = useRouter()
 
-  const handleSignOut = () => {
-    signOut(auth).then(() => {
-      console.log('User logged out.')
-      router.push('/')
-    }).catch((error) => {
-      console.error(error)
-    })
-  }
+  // const handleSignOut = () => {
+  //   signOut(auth).then(() => {
+  //     console.log('User logged out.')
+  //     router.push('/')
+  //   }).catch((error) => {
+  //     console.error(error)
+  //   })
+  // }
 
-  const handleSignIn = () => {
-    router.push('/login')
-  }
+  // const handleSignIn = () => {
+  //   router.push('/login')
+  // }
 
   return (
-    <header style={headerStyles}>
-      <p>Queen of Hearts</p>
-      <Button
-        variant='outlined'
-        onClick={!user ? handleSignIn : handleSignOut}
-      >
-        {!user ? 'Sign in' : 'Sign out'}
-      </Button>
-    </header>
+    <Box component={'header'} style={headerStyles}>
+      <Typography variant={'h5'} component={'p'} sx={{fontWeight: 'bold'}}>Queen of Hearts</Typography>
+    </Box>
   )
 }
