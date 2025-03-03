@@ -2,13 +2,13 @@ import {create} from 'zustand'
 import {db} from '../lib/firebase'
 import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
 
-type Envelope = {
+export type Envelope = {
   id: string,
   card: string,
   isPicked: boolean
 }
 
-type EnvelopStore = {
+export type EnvelopStore = {
   envelopes: Envelope[],
   fetchEnvelopes: () => Promise<void>,
   togglePicked: (id: string, isPicked: boolean, name: string, suit: string, value: string) => Promise<void>
