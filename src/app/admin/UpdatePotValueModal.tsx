@@ -32,7 +32,9 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
   }
 
   const handleSavePotValue = () => {
+    // TODO: find out why it is saying this is ignoring a promise that is being returned
     updatePotValue(newValue)
+    setNewValue(null)
     onClose()
   }
 

@@ -26,7 +26,7 @@ export const usePotValueStore = create<PotValueStore>((set) => ({
   },
   updatePotValue: async (newValue: number) => {
     const updatedDate = new Date().toISOString().split('T')[0]
-    const valueRef = doc(db, 'pot-value', 'Myzm1VZI6dn9wybORvpc')
+    const valueRef = doc(db, 'pot-value', `${process.env.NEXT_PUBLIC_FIREBASE_POT_VALUE_ID}`)
 
     await updateDoc(valueRef, {value: newValue, updatedDate})
 
