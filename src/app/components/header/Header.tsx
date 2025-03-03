@@ -32,7 +32,7 @@ export default function Header() {
     <header style={headerStyles}>
       <p>Queen of Hearts</p>
       <Button
-        variant='contained'
+        variant='outlined'
         onClick={!user ? handleSignIn : handleSignOut}
       >
         {!user ? 'Sign in' : 'Sign out'}
