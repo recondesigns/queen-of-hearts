@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useEnvelopeStore} from "@/stores/envelopeStore";
+import CardDisplay from './components/card-display/CardDisplay'
 
 export default function Home() {
   const { envelopes, fetchEnvelopes } = useEnvelopeStore();
@@ -14,11 +15,7 @@ export default function Home() {
     <div>
       <h1>Envelope list</h1>
       <div>
-        {envelopes.map((envelope, idx) => (
-          <div key={idx}>
-            {envelope.card} - {envelope.isPicked ? "Picked" : "Available"}
-          </div>
-        ))}
+        <CardDisplay envelopes={envelopes} />
       </div>
     </div>
   );
