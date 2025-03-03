@@ -2,6 +2,8 @@
 import React from 'react'
 import { useEnvelopeStore} from "@/stores/envelopeStore";
 import { usePotValueStore} from '@/stores/potValueStore'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import PotDisplay from './components/pot-display/PotDisplay'
 import CardDisplay from './components/card-display/CardDisplay'
 
@@ -16,12 +18,12 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
-      <h1>Envelope list</h1>
+    <Box>
+      <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
       <div>
         <PotDisplay potValue={potValue} />
         <CardDisplay envelopes={envelopes} />
       </div>
-    </div>
+    </Box>
   );
 }
