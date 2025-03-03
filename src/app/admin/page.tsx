@@ -8,12 +8,18 @@ import {usePotValueStore} from "@/stores/potValueStore";
 import Box from '@mui/material/Box'
 import PotDisplay  from "../components/pot-display/PotDisplay";
 import CardDisplay from '../components/card-display/CardDisplay'
+import Button from '@mui/material/Button'
+import UpdatePotValueModal from './UpdatePotValueModal';
 
 export default function AdminPage() {
   const {envelopes, fetchEnvelopes, togglePicked} = useEnvelopeStore()
   const {potValue, fetchPotValue} = usePotValueStore()
   const {user, loading} = useAuthStore()
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
   const router = useRouter()
+
+  const handleModalOpen = () => setIsModalOpen(true)
+  const handleModalClose = () => setIsModalOpen(false)
 
   React.useEffect(() => {
     if (!loading && !user) {
@@ -37,7 +43,9 @@ export default function AdminPage() {
 
   return (
     <Box>
+      <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
       <h1>Admin page</h1>
+      <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
       <PotDisplay potValue={potValue} />
       <CardDisplay envelopes={envelopes}/>
     </Box>
