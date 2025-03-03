@@ -11,11 +11,10 @@ export default function Home() {
 
   React.useEffect(() => {
     fetchEnvelopes();
+    // TODO: I am duplicating this call with the admin page
     fetchPotValue()
   }, [])
 
-
-  console.log(potValue)
   return (
     <div>
       <h1>Envelope list</h1>

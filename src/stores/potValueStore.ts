@@ -20,7 +20,6 @@ export const usePotValueStore = create<PotValueStore>((set) => ({
       ...doc.data()
     }))
 
-    // console.log(potValues[0].value)
     set({potValue: potValues[0].value})
   }
 }))
