@@ -14,11 +14,11 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '80%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 type UpdatePotValueModalProps = {
@@ -36,6 +36,10 @@ const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
     setCardSuit(e.target.value)
   }
 
+  const handleValueSelectChange = (e: SelectChangeEvent) => {
+    setCardValue(e.target.value)
+  }
+
   const handleSaveCardUpdate = () => {
     togglePicked(selectedEnvelope.id, true, cardName, cardSuit, cardValue)
     setCardValue('')
@@ -51,39 +55,69 @@ const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
           {selectedEnvelope && (<p>{`Updating envelope: ${selectedEnvelope.number}`}</p>)}
           <Box
             component={'form'}
-            sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+            // '& > :not(style)': { m: 1, width: '25ch' }
+            sx={{width: '100%', }}
             noValidate
             autoComplete="off"
           >
-            <InputLabel id="suit-select-label">Suit</InputLabel>
-            <Select
-              labelId="suit-select-label"
-              id="suit-select"
-              value={cardSuit}
-              onChange={handleSuitSelectChange}
+            <Box
+              sx={{ display: 'flex', gap: 2}}
             >
-              <MenuItem value={'clubs'}>Clubs</MenuItem>
-              <MenuItem value={'diamonds'}>Diamonds</MenuItem>
-              <MenuItem value={'hearts'}>Hearts</MenuItem>
-              <MenuItem value={'spades'}>Spades</MenuItem>
-            </Select>
-            <InputLabel id="card-name-label">Name</InputLabel>
-            <TextField
-              id="card-name"
-              variant="outlined"
-              value={cardName}
-              onChange={(e) => setCardName(e.target.value)}
-            />
-            <InputLabel id="card-value-label">Value</InputLabel>
-            <TextField
-              id="card-value"
-              variant="outlined"
-              value={cardValue}
-              onChange={(e) => setCardValue(e.target.value)}
-            />
+              <Box sx={{ width: '100%'}}>
+                <InputLabel id="suit-select-label">Suit</InputLabel>
+                <Select
+                  labelId="suit-select-label"
+                  id="suit-select"
+                  value={cardSuit}
+                  onChange={handleSuitSelectChange}
+                  sx={{width: '100%'}}
+                >
+                  <MenuItem value={'clubs'}>Clubs</MenuItem>
+                  <MenuItem value={'diamonds'}>Diamonds</MenuItem>
+                  <MenuItem value={'hearts'}>Hearts</MenuItem>
+                  <MenuItem value={'spades'}>Spades</MenuItem>
+                </Select>
+              </Box>
+              <Box sx={{ width: '100%'}}>
+                <InputLabel id="value-select-label">Value</InputLabel>
+                <Select
+                  labelId="value-select-label"
+                  id="value-select"
+                  value={cardValue}
+                  onChange={handleValueSelectChange}
+                  sx={{width: '100%'}}
+                >
+                  <MenuItem value={'A'}>Ace</MenuItem>
+                  <MenuItem value={'2'}>Two</MenuItem>
+                  <MenuItem value={'3'}>Three</MenuItem>
+                  <MenuItem value={'4'}>Four</MenuItem>
+                  <MenuItem value={'5'}>Five</MenuItem>
+                  <MenuItem value={'6'}>Six</MenuItem>
+                  <MenuItem value={'7'}>Seven</MenuItem>
+                  <MenuItem value={'8'}>Eight</MenuItem>
+                  <MenuItem value={'9'}>Nine</MenuItem>
+                  <MenuItem value={'10'}>Ten</MenuItem>
+                  <MenuItem value={'J'}>Jack</MenuItem>
+                  <MenuItem value={'Q'}>Queen</MenuItem>
+                  <MenuItem value={'K'}>King</MenuItem>
+                </Select>
+              </Box>
+            </Box>
+            <Box sx={{ pt: 2, width: '100%'}}>
+              <InputLabel id="card-name-label">Name</InputLabel>
+              <TextField
+                id="card-name"
+                variant="outlined"
+                value={cardName}
+                onChange={(e) => setCardName(e.target.value)}
+                sx={{width: '100%'}}
+              />
+            </Box>
           </Box>
-          <Button variant={'contained'} onClick={handleSaveCardUpdate}>Save value</Button>
-          <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
+          <Box pt={4} sx={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 2}}>
+            <Button variant={'contained'} onClick={handleSaveCardUpdate}>Assign card</Button>
+            <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
+          </Box>
         </Box>
       </Modal>
     </>
