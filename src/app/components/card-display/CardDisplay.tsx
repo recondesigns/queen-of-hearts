@@ -1,11 +1,13 @@
 'use client'
 import React from 'react'
+import {useEnvelopeStore} from "@/stores/envelopeStore";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import {IconType} from "react-icons";
 import cardMap from "@/lib/cardsMap";
 import Typography from "@mui/material/Typography";
 import { Envelope } from '../../../stores/envelopeStore'
+import UpdateCardModal from "@/app/admin/UpdateCardModal";
 
 const convertSuit = (suit: string) => {
   switch (suit) {
@@ -25,12 +27,22 @@ const convertSuit = (suit: string) => {
 const setCardIdentifier = (value: string, suit: string) => `${value}${convertSuit(suit)}`
 
 type CardDisplayProps = {
-  envelopes: Envelope[],
+  isAdmin?: boolean;
+  envelopes: Envelope[];
 }
 
-const CardDisplay = ({envelopes}: CardDisplayProps) => {
+const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
+  const {setSelectedEnvelope} = useEnvelopeStore()
+  const [isUpdateCardModalOpen, setIsUpdateCardModalOpen] = React.useState<boolean>(false)
+
+  const handleEnvelopeClick = (pickedEnvelope: Envelope) => {
+    setIsUpdateCardModalOpen(true)
+    setSelectedEnvelope(pickedEnvelope)
+  }
+
   return (
     <>
+      <UpdateCardModal open={isUpdateCardModalOpen} onClose={() => setIsUpdateCardModalOpen(false)} />
       <Box>
         <Grid container spacing={2}>
           {envelopes.sort((a, b) => a.number - b.number).map((envelope, idx) => {
@@ -43,25 +55,56 @@ const CardDisplay = ({envelopes}: CardDisplayProps) => {
               <>
                 <Grid key={idx} size={3} sx={{
                   height: '120px',
-                  border: '1px solid #171717',
-                  borderRadius: '6px'
                 }}>
-                  <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
-                    <Typography variant='h6'>{envelope.number}</Typography>
-                    {envelope.isPicked && <p style={{
-                      margin: '0px',
-                      padding: '0px',
+                  {isAdmin ? (
+                    <Box
+                      component={'button'}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'start',
+                        alignItems: 'center',
+                        background: '#FFFFFF',
+                        border: '2px solid #171717',
+                        borderRadius: '6px'
+                      }}
+                      onClick={() => handleEnvelopeClick(envelope)}
+                    >
+                      <Typography variant='h6'>{envelope.number}</Typography>
+                      {envelope.isPicked && <p style={{
+                        margin: '0px',
+                        padding: '0px',
+                        width: '100%',
+                        fontSize: '64px',
+                        lineHeight: '64px',
+                        textAlign: 'center',
+                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                    </Box>
+                  ) : (
+                    <Box sx={{
                       width: '100%',
-                      fontSize: '64px',
-                      lineHeight: '64px',
-                      textAlign: 'center',
-                    }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
-                  </Box>
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      background: '#FFFFFF',
+                      border: '2px solid #171717',
+                      borderRadius: '6px'
+                    }}>
+                      <Typography variant='h6'>{envelope.number}</Typography>
+                      {envelope.isPicked && <p style={{
+                        margin: '0px',
+                        padding: '0px',
+                        width: '100%',
+                        fontSize: '64px',
+                        lineHeight: '64px',
+                        textAlign: 'center',
+                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                    </Box>
+                  )}
                 </Grid>
               </>
             )
