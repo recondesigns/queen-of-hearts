@@ -11,19 +11,3 @@ export const useDisplayControlsStore = create<ControlsStore>((set) => ({
     set({show: str})
   }
 }))
-
-
-
-
-
-
-
-
-
-
-
-
-export type DisplayControlsStore = {
-  show: 'all' | 'picked' | 'unpicked';
-  setShow: () => void
-}
