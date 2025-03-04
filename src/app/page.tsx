@@ -18,7 +18,10 @@ export default function Home() {
   }, [])
 
   return (
-    <Box component={'main'}>
+    <Box
+      component={'main'}
+      px={{xs: 2, md: 4, lg: 6}}
+    >
       <Box component={'section'}>
         <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
         <Box>

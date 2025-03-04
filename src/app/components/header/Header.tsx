@@ -21,7 +21,15 @@ export default function Header() {
   }
 
   return (
-    <Box component={'header'} py={2} sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center',}}>
+    <Box
+      component={'header'}
+      py={2}
+      px={{xs: 2, md: 4, lg: 6}}
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
       <Typography variant={'h5'} component={'p'} sx={{fontWeight: 'bold'}}>Queen of Hearts</Typography>
       {user && (
         <Button

@@ -43,7 +43,10 @@ export default function AdminPage() {
   if (loading) return <p>Loading...</p>
 
   return (
-    <Box component={'main'}>
+    <Box
+      component={'main'}
+      px={{xs: 2, md: 4, lg: 6}}
+    >
       <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
       <Box component={'section'}>
         <Typography variant={'h5'} component={'p'}>Admin page</Typography>
