@@ -12,7 +12,6 @@ import Button from '@mui/material/Button'
 const LogInForm = () => {
   const {email, password, error, setEmail, setPassword, setError} = useLogInStore()
   const router = useRouter()
-  console.log(111, password)
 
   const handleLogin = async () => {
     try {
@@ -28,7 +27,6 @@ const LogInForm = () => {
     <Box
       component={'form'}
       pb={2}
-      // sx={{border: '2px solid orange'}}
     >
       <Typography variant={'h5'} pb={2} sx={{fontWeight: 'bold'}}>Log in</Typography>
       <Box
@@ -57,15 +55,6 @@ const LogInForm = () => {
       <Box pt={2}>
         <Button variant={'contained'} type={'button'} fullWidth onClick={handleLogin}>Log in</Button>
       </Box>
-
-      {/*<form style={{display: 'flex', flexDirection: 'column'}}>*/}
-      {/*  <label>Email</label>*/}
-      {/*  <input value={email} onChange={e => setEmail(e.target.value)}/>*/}
-      {/*  <label>Password</label>*/}
-      {/*  <input value={password} onChange={e => setPassword(e.target.value)}/>*/}
-      {/*  <button type='button' onClick={handleLogin}>Submit</button>*/}
-      {/*  {error && <p>{error}</p>}*/}
-      {/*</form>*/}
     </Box>
   )
 }
