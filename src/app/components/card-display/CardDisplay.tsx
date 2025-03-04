@@ -4,12 +4,12 @@ import {useEnvelopeStore} from "@/stores/envelopeStore";
 import {useDisplayControlsStore} from "@/stores/displayControlsStore";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
-import {IconType} from "react-icons";
 import cardMap from "@/lib/cardsMap";
 import Typography from "@mui/material/Typography";
-import { Envelope } from '../../../stores/envelopeStore'
 import UpdateCardModal from "@/app/admin/UpdateCardModal";
 import DisplayControls from "@/app/components/display-controls/DisplayControls";
+import {IconType} from "react-icons";
+import {Envelope} from '../../../stores/envelopeStore'
 
 const convertSuit = (suit: string) => {
   switch (suit) {
@@ -33,7 +33,7 @@ type CardDisplayProps = {
   envelopes: Envelope[];
 }
 
-const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
+const CardDisplay = ({envelopes, isAdmin}: CardDisplayProps) => {
   const {setSelectedEnvelope} = useEnvelopeStore()
   const {show} = useDisplayControlsStore()
   const [isUpdateCardModalOpen, setIsUpdateCardModalOpen] = React.useState<boolean>(false)
@@ -46,86 +46,82 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
   const envelopesToDisplay = show === 'all' ? envelopes : show === 'picked' ? envelopes.filter(envelope => envelope.isPicked) : envelopes.filter(envelope => !envelope.isPicked)
 
   return (
-    <>
-      <UpdateCardModal open={isUpdateCardModalOpen} onClose={() => setIsUpdateCardModalOpen(false)} />
+    <Box>
+      <UpdateCardModal open={isUpdateCardModalOpen} onClose={() => setIsUpdateCardModalOpen(false)}/>
       <Box>
         <Grid size={12}>
-          <DisplayControls />
+          <DisplayControls/>
         </Grid>
-        <Grid container spacing={2}>
-          {/* @ts-expect-error a. number is possibly undefined */}
-          {envelopesToDisplay.sort((a, b) => a.number - b.number).map((envelope, idx) => {
+        <Grid
+          sx={{
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(5, 1fr)',
+            rowGap: '20px',
+            columnGap: '12px',
+          }}
+        >
+          {/* @ts-expect-error  TS18048: a. number is possibly undefined*/}
+          {envelopesToDisplay.sort((a, b) => a.number - b.number).map((envelope, idx: number) => {
             // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
             const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
 
             const getCardColor = (string: string) => (string.endsWith('C') || string.endsWith('S') ? 'black' : 'red')
 
             return (
-              <>
-                <Grid key={idx} size={3} sx={{
-                  height: '120px',
-                }}>
-                  {isAdmin ? (
-                    <Box
-                      component={'button'}
-                      sx={{
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'start',
-                        alignItems: 'center',
-                        background: '#FFFFFF',
-                        border: '2px solid #171717',
-                        borderRadius: '6px'
-                      }}
-                      onClick={() => handleEnvelopeClick(envelope)}
-                    >
-                      <Typography variant='h6'>{envelope.number}</Typography>
+              <Box key={idx}>
+                {isAdmin ? (
+                  <Box
+                    sx={{
+                      paddingBottom: '12px',
+                      background: '#fff',
+                      borderBottom: '2px solid #ddd',
+                    }}
+                    onClick={() => handleEnvelopeClick(envelope)}
+                  >
+                    <Typography variant='h6' sx={{textAlign: 'center'}}>{envelope.number}</Typography>
+                    <Box sx={{padding: '0px', margin: '0px', height: '56px'}}>
                       {envelope.isPicked && <p style={{
                         margin: '0px',
                         padding: '0px',
-                        width: '100%',
-                        fontSize: '64px',
-                        lineHeight: '64px',
+                        fontSize: '56px',
+                        lineHeight: '56px',
                         textAlign: 'center',
                       }}>
                         {/* @ts-expect-error Argument of type string | undefined is not assignable to parameter of type string*/}
                         {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>
                       }
                     </Box>
-                  ) : (
-                    <Box sx={{
-                      width: '100%',
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      background: '#FFFFFF',
-                      border: '2px solid #171717',
-                      borderRadius: '6px'
-                    }}>
-                      <Typography variant='h6'>{envelope.number}</Typography>
+                  </Box>
+                ) : (
+                  <Box
+                    sx={{
+                      paddingBottom: '12px',
+                      background: '#fff',
+                      borderBottom: '2px solid #ddd',
+                    }}
+                  >
+                    <Typography variant='h6' sx={{textAlign: 'center'}}>{envelope.number}</Typography>
+                    <Box sx={{padding: '0px', margin: '0px', height: '56px'}}>
                       {envelope.isPicked && <p style={{
                         margin: '0px',
                         padding: '0px',
-                        width: '100%',
-                        fontSize: '64px',
-                        lineHeight: '64px',
+                        fontSize: '56px',
+                        lineHeight: '56px',
                         textAlign: 'center',
                       }}>
                         {/* @ts-expect-error Argument of type string | undefined is not assignable to parameter of type string*/}
-                        {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                        {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>
+                      }
                     </Box>
-                  )}
-                </Grid>
-              </>
+                  </Box>
+                )}
+              </Box>
             )
           })}
         </Grid>
       </Box>
-    </>
+    </Box>
   )
 }
 
