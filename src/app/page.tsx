@@ -18,7 +18,7 @@ export default function Home() {
   }, [])
 
   return (
-    <Box>
+    <Box component={'main'}>
       <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
       <div>
         <PotDisplay potValue={potValue} />

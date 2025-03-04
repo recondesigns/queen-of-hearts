@@ -43,7 +43,7 @@ export default function AdminPage() {
   if (loading) return <p>Loading...</p>
 
   return (
-    <Box>
+    <Box component={'main'}>
       <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
       <Typography variant={'h5'} component={'p'}>Admin page</Typography>
       <PotDisplay potValue={potValue} />
