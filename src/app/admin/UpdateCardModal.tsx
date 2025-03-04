@@ -41,6 +41,7 @@ const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
   }
 
   const handleSaveCardUpdate = () => {
+    // @ts-expect-error selectedEnvelope is possibly null
     togglePicked(selectedEnvelope.id, true, cardName, cardSuit, cardValue)
     setCardValue('')
     setCardName('')
