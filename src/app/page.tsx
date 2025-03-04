@@ -18,12 +18,17 @@ export default function Home() {
   }, [])
 
   return (
-    <Box>
-      <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
-      <div>
-        <PotDisplay potValue={potValue} />
-        <CardDisplay envelopes={envelopes} />
-      </div>
+    <Box
+      component={'main'}
+      px={{xs: 2, md: 4, lg: 6}}
+    >
+      <Box component={'section'}>
+        <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
+        <Box>
+          <PotDisplay potValue={potValue} />
+          <CardDisplay envelopes={envelopes} />
+        </Box>
+      </Box>
     </Box>
   );
 }
