@@ -44,8 +44,6 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
   }
 
   const envelopesToDisplay = show === 'all' ? envelopes : show === 'picked' ? envelopes.filter(envelope => envelope.isPicked) : envelopes.filter(envelope => !envelope.isPicked)
-  // const pickedEnvelopes = envelopes.filter(envelope => envelope.isPicked);
-  console.log(show)
 
   return (
     <>
