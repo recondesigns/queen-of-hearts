@@ -15,7 +15,7 @@ const DisplayControls = ({}) => {
   }
 
   return (
-    <Box pt={2} pb={2}>
+    <Box pt={2} pb={4}>
       <Box>
         <InputLabel id="display-filter-select-label">Show only</InputLabel>
         <Select
