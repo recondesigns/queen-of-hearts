@@ -6,6 +6,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import PotDisplay from './components/pot-display/PotDisplay'
 import CardDisplay from './components/card-display/CardDisplay'
+import Button from "@mui/material/Button";
 
 export default function Home() {
   const { envelopes, fetchEnvelopes } = useEnvelopeStore();
@@ -20,14 +21,22 @@ export default function Home() {
   return (
     <Box
       component={'main'}
+      py={4}
       px={{xs: 2, md: 4, lg: 6}}
     >
       <Box component={'section'}>
-        <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
-        <Box>
+        <Box component={'section'} pb={4}>
           <PotDisplay potValue={potValue} />
-          <CardDisplay envelopes={envelopes} />
+          {/*<Button variant={'contained'} fullWidth onClick={handleModalOpen}>Update pot</Button>*/}
         </Box>
+        <Box component={'section'}>
+          <CardDisplay envelopes={envelopes} isAdmin={true} />
+        </Box>
+        {/*<Typography variant={'h5'} component={'p'}>Envelope list</Typography>*/}
+        {/*<Box>*/}
+        {/*  <PotDisplay potValue={potValue} />*/}
+        {/*  <CardDisplay envelopes={envelopes} />*/}
+        {/*</Box>*/}
       </Box>
     </Box>
   );
