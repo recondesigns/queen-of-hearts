@@ -13,7 +13,7 @@ import CardDisplay from '../components/card-display/CardDisplay'
 import UpdatePotValueModal from './UpdatePotValueModal';
 
 export default function AdminPage() {
-  const {envelopes, fetchEnvelopes, togglePicked} = useEnvelopeStore()
+  const {envelopes, fetchEnvelopes} = useEnvelopeStore()
   const {potValue, fetchPotValue} = usePotValueStore()
   const {user, loading} = useAuthStore()
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
