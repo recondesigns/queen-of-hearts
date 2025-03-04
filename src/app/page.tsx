@@ -19,11 +19,13 @@ export default function Home() {
 
   return (
     <Box component={'main'}>
-      <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
-      <div>
-        <PotDisplay potValue={potValue} />
-        <CardDisplay envelopes={envelopes} />
-      </div>
+      <Box component={'section'}>
+        <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
+        <Box>
+          <PotDisplay potValue={potValue} />
+          <CardDisplay envelopes={envelopes} />
+        </Box>
+      </Box>
     </Box>
   );
 }
