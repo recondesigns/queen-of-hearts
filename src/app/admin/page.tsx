@@ -7,7 +7,7 @@ import {useEnvelopeStore} from "@/stores/envelopeStore";
 import {usePotValueStore} from "@/stores/potValueStore";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import PotDisplay  from "../components/pot-display/PotDisplay";
+import PotDisplay from "../components/pot-display/PotDisplay";
 import CardDisplay from '../components/card-display/CardDisplay'
 import UpdatePotValueModal from './UpdatePotValueModal';
 
@@ -47,13 +47,21 @@ export default function AdminPage() {
       py={4}
       px={{xs: 2, md: 4, lg: 6}}
     >
-      <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
+      <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose}/>
       <Box component={'section'} pb={4}>
-        <PotDisplay potValue={potValue} />
-        <Button variant={'contained'} fullWidth onClick={handleModalOpen}>Update pot</Button>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Box sx={{width: '100%', maxWidth: '400px'}}>
+            <PotDisplay potValue={potValue}/>
+            <Button variant={'contained'} fullWidth onClick={handleModalOpen}>Update pot</Button>
+          </Box>
+        </Box>
       </Box>
       <Box component={'section'}>
-        <CardDisplay envelopes={envelopes} isAdmin={true} />
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Box sx={{width: '100%', maxWidth: '400px'}}>
+            <CardDisplay envelopes={envelopes} isAdmin={true}/>
+          </Box>
+        </Box>
       </Box>
     </Box>
   )

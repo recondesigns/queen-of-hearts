@@ -22,14 +22,22 @@ export default function Home() {
       py={4}
       px={{xs: 2, md: 4, lg: 6}}
     >
-      <Box component={'section'}>
-        <Box component={'section'} pb={4}>
-          <PotDisplay potValue={potValue} />
-        </Box>
-        <Box component={'section'}>
-          <CardDisplay envelopes={envelopes} isAdmin={true} />
+
+      <Box component={'section'} pb={4}>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Box sx={{width: '100%', maxWidth: '400px'}}>
+            <PotDisplay potValue={potValue} />
+          </Box>
         </Box>
       </Box>
+      <Box component={'section'}>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Box sx={{width: '100%', maxWidth: '400px'}}>
+            <CardDisplay envelopes={envelopes} isAdmin={true} />
+          </Box>
+        </Box>
+      </Box>
+
     </Box>
   );
 }

@@ -16,7 +16,7 @@ const PotDisplay = ({potValue}: PotDisplayProps) => {
         sx={{
         fontWeight: 'bold',
         textAlign: 'center'
-      }}>{!potValue ? 'Loading...' : `$${potValue.toLocaleString()}`}</Typography>
+      }}>{!potValue ? 'Loading...' : `$${Number(potValue).toLocaleString()}`}</Typography>
       <Typography variant={'body2'} sx={{
         fontWeight: 200,
         textAlign: 'center'
