@@ -7,7 +7,6 @@ import {useEnvelopeStore} from "@/stores/envelopeStore";
 import {usePotValueStore} from "@/stores/potValueStore";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import PotDisplay  from "../components/pot-display/PotDisplay";
 import CardDisplay from '../components/card-display/CardDisplay'
 import UpdatePotValueModal from './UpdatePotValueModal';

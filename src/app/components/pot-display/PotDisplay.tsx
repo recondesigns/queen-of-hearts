@@ -9,10 +9,7 @@ export type PotDisplayProps = {
 
 const PotDisplay = ({potValue}: PotDisplayProps) => {
   return (
-    <Box pb={1}>
-      {/*<Typography variant={'body2'} sx={{*/}
-      {/*  fontWeight: 200*/}
-      {/*}}>Next drawing</Typography>*/}
+    <Box pb={2}>
       <Typography
         variant={'h4'}
         pb={1}
@@ -23,7 +20,7 @@ const PotDisplay = ({potValue}: PotDisplayProps) => {
       <Typography variant={'body2'} sx={{
         fontWeight: 200,
         textAlign: 'center'
-      }}>March 5th | 7:30 p.m.</Typography>
+      }}>Wednesday, March 5th | 7:30 p.m.</Typography>
     </Box>
   )
 }
