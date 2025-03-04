@@ -55,6 +55,7 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
           <DisplayControls />
         </Grid>
         <Grid container spacing={2}>
+          {/* @ts-expect-error a. number is possibly undefined */}
           {envelopesToDisplay.sort((a, b) => a.number - b.number).map((envelope, idx) => {
             // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
             const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
@@ -90,7 +91,10 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
                         fontSize: '64px',
                         lineHeight: '64px',
                         textAlign: 'center',
-                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                      }}>
+                        {/* @ts-expect-error Argument of type string | undefined is not assignable to parameter of type string*/}
+                        {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>
+                      }
                     </Box>
                   ) : (
                     <Box sx={{
@@ -112,7 +116,9 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
                         fontSize: '64px',
                         lineHeight: '64px',
                         textAlign: 'center',
-                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                      }}>
+                        {/* @ts-expect-error Argument of type string | undefined is not assignable to parameter of type string*/}
+                        {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
                     </Box>
                   )}
                 </Grid>

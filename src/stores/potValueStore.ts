@@ -22,6 +22,7 @@ export const usePotValueStore = create<PotValueStore>((set) => ({
       ...doc.data()
     }))
 
+    // @ts-expect-error TS2339: Property value does not exist on type { id: string; }
     set({potValue: potValues[0].value})
   },
   updatePotValue: async (newValue: number) => {
