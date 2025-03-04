@@ -23,7 +23,7 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h1>Log in</h1>
+      {/*<h1>Log in</h1>*/}
       <LogInForm />
       <form style={{ display: 'flex', flexDirection: 'column' }}>
         <label>Email</label>
