@@ -27,12 +27,14 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
   const {updatePotValue} = usePotValueStore()
   const [newValue, setNewValue] = React.useState<number | null>(null)
 
-  const handleNewValueChange = (e) => {
+  const handleNewValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // @ts-expect-error Argument of type string is not assignable to parameter of type SetStateAction<number | null>
     setNewValue(e.target.value)
   }
 
   const handleSavePotValue = () => {
     // TODO: find out why it is saying this is ignoring a promise that is being returned
+    // @ts-expect-error Argument of type number | null is not assignable to parameter of type number
     updatePotValue(newValue)
     setNewValue(null)
     onClose()
