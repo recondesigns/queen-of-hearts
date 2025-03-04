@@ -3,6 +3,7 @@ import React from 'react'
 import { auth } from '@/lib/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
+import LogInForm from './LogInForm'
 
 export default function LoginPage() {
   const [email, setEmail] = React.useState<string>('')
@@ -23,6 +24,7 @@ export default function LoginPage() {
   return (
     <div>
       <h1>Log in</h1>
+      <LogInForm />
       <form style={{ display: 'flex', flexDirection: 'column' }}>
         <label>Email</label>
         <input value={email}  onChange={e => setEmail(e.target.value)} />
