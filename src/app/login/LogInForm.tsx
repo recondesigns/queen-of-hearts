@@ -26,9 +26,13 @@ const LogInForm = () => {
   return (
     <Box
       component={'form'}
-      pb={2}
+      p={2}
+      sx={{
+        border: '1px solid #d4d4d4',
+        borderRadius: '6px',
+      }}
     >
-      <Typography variant={'h5'} pb={2} sx={{fontWeight: 'bold'}}>Log in</Typography>
+      <Typography variant={'h6'} pb={2} sx={{fontWeight: 'bold'}}>Log in</Typography>
       <Box
         gap={2}
         sx={{
