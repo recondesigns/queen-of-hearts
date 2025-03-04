@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
+import {useDisplayControlsStore} from "@/stores/displayControlsStore";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import {IconType} from "react-icons";
@@ -8,6 +9,7 @@ import cardMap from "@/lib/cardsMap";
 import Typography from "@mui/material/Typography";
 import { Envelope } from '../../../stores/envelopeStore'
 import UpdateCardModal from "@/app/admin/UpdateCardModal";
+import DisplayControls from "@/app/components/display-controls/DisplayControls";
 
 const convertSuit = (suit: string) => {
   switch (suit) {
@@ -33,6 +35,7 @@ type CardDisplayProps = {
 
 const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
   const {setSelectedEnvelope} = useEnvelopeStore()
+  const {show} = useDisplayControlsStore()
   const [isUpdateCardModalOpen, setIsUpdateCardModalOpen] = React.useState<boolean>(false)
 
   const handleEnvelopeClick = (pickedEnvelope: Envelope) => {
@@ -40,12 +43,19 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
     setSelectedEnvelope(pickedEnvelope)
   }
 
+  const envelopesToDisplay = show === 'all' ? envelopes : show === 'picked' ? envelopes.filter(envelope => envelope.isPicked) : envelopes.filter(envelope => !envelope.isPicked)
+  // const pickedEnvelopes = envelopes.filter(envelope => envelope.isPicked);
+  console.log(show)
+
   return (
     <>
       <UpdateCardModal open={isUpdateCardModalOpen} onClose={() => setIsUpdateCardModalOpen(false)} />
       <Box>
+        <Grid size={12}>
+          <DisplayControls />
+        </Grid>
         <Grid container spacing={2}>
-          {envelopes.sort((a, b) => a.number - b.number).map((envelope, idx) => {
+          {envelopesToDisplay.sort((a, b) => a.number - b.number).map((envelope, idx) => {
             // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
             const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
 
