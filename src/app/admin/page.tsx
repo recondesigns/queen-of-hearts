@@ -7,7 +7,6 @@ import {useEnvelopeStore} from "@/stores/envelopeStore";
 import {usePotValueStore} from "@/stores/potValueStore";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import PotDisplay  from "../components/pot-display/PotDisplay";
 import CardDisplay from '../components/card-display/CardDisplay'
 import UpdatePotValueModal from './UpdatePotValueModal';
@@ -45,13 +44,13 @@ export default function AdminPage() {
   return (
     <Box
       component={'main'}
+      py={4}
       px={{xs: 2, md: 4, lg: 6}}
     >
       <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
-      <Box component={'section'}>
-        <Typography variant={'h5'} component={'p'}>Admin page</Typography>
+      <Box component={'section'} pb={4}>
         <PotDisplay potValue={potValue} />
-        <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
+        <Button variant={'contained'} fullWidth onClick={handleModalOpen}>Update pot</Button>
       </Box>
       <Box component={'section'}>
         <CardDisplay envelopes={envelopes} isAdmin={true} />
