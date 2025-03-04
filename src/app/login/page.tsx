@@ -25,14 +25,14 @@ export default function LoginPage() {
     <div>
       {/*<h1>Log in</h1>*/}
       <LogInForm />
-      <form style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>Email</label>
-        <input value={email}  onChange={e => setEmail(e.target.value)} />
-        <label>Password</label>
-        <input value={password} onChange={e => setPassword(e.target.value)} />
-        <button type='button' onClick={handleLogin}>Submit</button>
-        {error && <p>{error}</p>}
-      </form>
+      {/*<form style={{ display: 'flex', flexDirection: 'column' }}>*/}
+      {/*  <label>Email</label>*/}
+      {/*  <input value={email}  onChange={e => setEmail(e.target.value)} />*/}
+      {/*  <label>Password</label>*/}
+      {/*  <input value={password} onChange={e => setPassword(e.target.value)} />*/}
+      {/*  <button type='button' onClick={handleLogin}>Submit</button>*/}
+      {/*  {error && <p>{error}</p>}*/}
+      {/*</form>*/}
     </div>
   )
 }
