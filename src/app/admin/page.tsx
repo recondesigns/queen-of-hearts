@@ -43,12 +43,19 @@ export default function AdminPage() {
   if (loading) return <p>Loading...</p>
 
   return (
-    <Box>
+    <Box
+      component={'main'}
+      px={{xs: 2, md: 4, lg: 6}}
+    >
       <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
-      <Typography variant={'h5'} component={'p'}>Admin page</Typography>
-      <PotDisplay potValue={potValue} />
-      <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
-      <CardDisplay envelopes={envelopes} isAdmin={true} />
+      <Box component={'section'}>
+        <Typography variant={'h5'} component={'p'}>Admin page</Typography>
+        <PotDisplay potValue={potValue} />
+        <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
+      </Box>
+      <Box component={'section'}>
+        <CardDisplay envelopes={envelopes} isAdmin={true} />
+      </Box>
     </Box>
   )
 }
