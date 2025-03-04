@@ -91,7 +91,10 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
                         fontSize: '64px',
                         lineHeight: '64px',
                         textAlign: 'center',
-                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                      }}>
+                        {/* @ts-expect-error Argument of type string | undefined is not assignable to parameter of type string*/}
+                        {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>
+                      }
                     </Box>
                   ) : (
                     <Box sx={{
@@ -113,7 +116,9 @@ const CardDisplay = ({envelopes,  isAdmin}: CardDisplayProps) => {
                         fontSize: '64px',
                         lineHeight: '64px',
                         textAlign: 'center',
-                      }}>{<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
+                      }}>
+                        {/* @ts-expect-error Argument of type string | undefined is not assignable to parameter of type string*/}
+                        {<Icon color={getCardColor(setCardIdentifier(envelope.value, envelope.suit))}/>}</p>}
                     </Box>
                   )}
                 </Grid>
