@@ -3,13 +3,9 @@ import {auth} from '@/lib/firebase'
 import {signOut} from 'firebase/auth'
 import {useRouter} from 'next/navigation'
 import {useAuthStore} from "@/stores/authStore";
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-
-const headerStyles = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-}
+import Typography from '@mui/material/Typography'
 
 export default function Header() {
   const {user} = useAuthStore()
@@ -24,19 +20,17 @@ export default function Header() {
     })
   }
 
-  const handleSignIn = () => {
-    router.push('/login')
-  }
-
   return (
-    <header style={headerStyles}>
-      <p>Queen of Hearts</p>
-      <Button
-        variant='contained'
-        onClick={!user ? handleSignIn : handleSignOut}
-      >
-        {!user ? 'Sign in' : 'Sign out'}
-      </Button>
-    </header>
+    <Box component={'header'} py={2} sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center',}}>
+      <Typography variant={'h5'} component={'p'} sx={{fontWeight: 'bold'}}>Queen of Hearts</Typography>
+      {user && (
+        <Button
+          variant='outlined'
+          onClick={handleSignOut}
+        >
+          Sign out
+        </Button>
+      )}
+    </Box>
   )
 }

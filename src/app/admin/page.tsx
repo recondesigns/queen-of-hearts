@@ -4,16 +4,23 @@ import {auth} from '@/lib/firebase'
 import {useAuthStore} from "@/stores/authStore";
 import {useRouter} from 'next/navigation'
 import {useEnvelopeStore} from "@/stores/envelopeStore";
+import {usePotValueStore} from "@/stores/potValueStore";
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import {IconType} from 'react-icons'
-import cardMap from "@/lib/cardsMap";
+import PotDisplay  from "../components/pot-display/PotDisplay";
+import CardDisplay from '../components/card-display/CardDisplay'
+import UpdatePotValueModal from './UpdatePotValueModal';
 
 export default function AdminPage() {
-  const {envelopes, fetchEnvelopes, togglePicked} = useEnvelopeStore()
+  const {envelopes, fetchEnvelopes} = useEnvelopeStore()
+  const {potValue, fetchPotValue} = usePotValueStore()
   const {user, loading} = useAuthStore()
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
   const router = useRouter()
+
+  const handleModalOpen = () => setIsModalOpen(true)
+  const handleModalClose = () => setIsModalOpen(false)
 
   React.useEffect(() => {
     if (!loading && !user) {
@@ -23,6 +30,8 @@ export default function AdminPage() {
 
   React.useEffect(() => {
     fetchEnvelopes()
+    // TODO: I am duplicating this call with the landing page
+    fetchPotValue()
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) router.push('/login')
@@ -35,26 +44,11 @@ export default function AdminPage() {
 
   return (
     <Box>
-      <h1>Admin page</h1>
-      <Grid container spacing={0} sx={{border: '2px solid dodgerblue'}}>
-        {envelopes.map((envelope, idx) => {
-          // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
-          const Icon: IconType = cardMap[envelope.card] || null
-          console.log(111, envelope)
-          return (
-            <Grid key={idx} item xs={2} sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              border: '2px solid orange'
-            }}>
-              {envelope.isPicked && <Typography variant='h3' component={'p'}>{<Icon color={'red'}/>}</Typography>}
-              <Typography variant='h5'>{envelope.number}</Typography>
-            </Grid>
-          )
-        })}
-      </Grid>
+      <UpdatePotValueModal open={isModalOpen} onClose={handleModalClose} />
+      <Typography variant={'h5'} component={'p'}>Admin page</Typography>
+      <PotDisplay potValue={potValue} />
+      <Button variant={'contained'} onClick={handleModalOpen}>Update pot</Button>
+      <CardDisplay envelopes={envelopes} isAdmin={true} />
     </Box>
   )
 }

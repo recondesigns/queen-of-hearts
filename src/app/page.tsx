@@ -1,25 +1,29 @@
 'use client'
 import React from 'react'
 import { useEnvelopeStore} from "@/stores/envelopeStore";
+import { usePotValueStore} from '@/stores/potValueStore'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import PotDisplay from './components/pot-display/PotDisplay'
+import CardDisplay from './components/card-display/CardDisplay'
 
 export default function Home() {
   const { envelopes, fetchEnvelopes } = useEnvelopeStore();
+  const { potValue, fetchPotValue } = usePotValueStore();
 
   React.useEffect(() => {
     fetchEnvelopes();
+    // TODO: I am duplicating this call with the admin page
+    fetchPotValue()
   }, [])
 
-
   return (
-    <div>
-      <h1>Envelope list</h1>
+    <Box>
+      <Typography variant={'h5'} component={'p'}>Envelope list</Typography>
       <div>
-        {envelopes.map((envelope, idx) => (
-          <div key={idx}>
-            {envelope.card} - {envelope.isPicked ? "Picked" : "Available"}
-          </div>
-        ))}
+        <PotDisplay potValue={potValue} />
+        <CardDisplay envelopes={envelopes} />
       </div>
-    </div>
+    </Box>
   );
 }
