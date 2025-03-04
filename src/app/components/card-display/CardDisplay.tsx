@@ -49,9 +49,7 @@ const CardDisplay = ({envelopes, isAdmin}: CardDisplayProps) => {
     <Box>
       <UpdateCardModal open={isUpdateCardModalOpen} onClose={() => setIsUpdateCardModalOpen(false)}/>
       <Box>
-        <Grid size={12}>
-          <DisplayControls/>
-        </Grid>
+        <DisplayControls/>
         <Grid
           sx={{
             width: '100%',
