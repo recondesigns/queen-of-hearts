@@ -73,13 +73,14 @@ const CardDisplay = ({envelopes, isAdmin}: CardDisplayProps) => {
                 {isAdmin ? (
                   <Box
                     sx={{
-                      // paddingBottom: '12px',
                       background: '#fff',
-                      // borderBottom: '2px solid #ddd',
                     }}
                     onClick={() => handleEnvelopeClick(envelope)}
                   >
-                    <Typography variant='h6' sx={{textAlign: 'center', borderBottom: '2px solid #ddd'}}>{envelope.number}</Typography>
+                    <Typography variant='h6' sx={{
+                      textAlign: 'center',
+                      borderBottom: '2px solid #ddd'
+                    }}>{envelope.number}</Typography>
                     <Box pt={1} sx={{height: '56px'}}>
                       {envelope.isPicked && <p style={{
                         margin: '0px',
@@ -96,13 +97,11 @@ const CardDisplay = ({envelopes, isAdmin}: CardDisplayProps) => {
                 ) : (
                   <Box
                     sx={{
-                      paddingBottom: '12px',
                       background: '#fff',
-                      borderBottom: '2px solid #ddd',
                     }}
                   >
-                    <Typography variant='h6' sx={{textAlign: 'center'}}>{envelope.number}</Typography>
-                    <Box sx={{padding: '0px', margin: '0px', height: '56px'}}>
+                    <Typography variant='h6' sx={{textAlign: 'center', borderBottom: '2px solid #ddd'}}>{envelope.number}</Typography>
+                    <Box pt={1} sx={{height: '56px'}}>
                       {envelope.isPicked && <p style={{
                         margin: '0px',
                         padding: '0px',
