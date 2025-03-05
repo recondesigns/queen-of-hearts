@@ -66,7 +66,7 @@ const CardDisplay = ({envelopes, isAdmin}: CardDisplayProps) => {
             // @ts-expect-error Element implicitly has an any type because expression of type string can't be used to index type
             const Icon: IconType = cardMap[setCardIdentifier(envelope.value, envelope.suit)] || null
 
-            const getCardColor = (string: string) => (string.endsWith('C') || string.endsWith('S') ? 'black' : 'red')
+            const getCardColor = (string: string) => (string.endsWith('J') ? 'green' : string.endsWith('C') || string.endsWith('S') ? 'black' : 'red')
 
             return (
               <Box key={idx}>
