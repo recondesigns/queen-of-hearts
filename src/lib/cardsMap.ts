@@ -51,6 +51,7 @@ import {
   GiCardJackSpades,
   GiCardQueenSpades,
   GiCardKingSpades,
+  GiCardJoker,
 } from "react-icons/gi";
 
 const cardMap = {
@@ -106,6 +107,7 @@ const cardMap = {
   'JS': GiCardJackSpades,
   'QS': GiCardQueenSpades,
   'KS': GiCardKingSpades,
+  'JJ': GiCardJoker,
 }
 
 export default cardMap

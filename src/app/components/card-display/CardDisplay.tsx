@@ -21,6 +21,8 @@ const convertSuit = (suit: string) => {
       return 'H'
     case 'spades':
       return 'S'
+    case 'joker':
+      return 'J'
     default:
       return null
   }
