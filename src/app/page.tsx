@@ -33,7 +33,7 @@ export default function Home() {
       <Box component={'section'}>
         <Box sx={{display: 'flex', justifyContent: 'center'}}>
           <Box sx={{width: '100%', maxWidth: '400px'}}>
-            <CardDisplay envelopes={envelopes} isAdmin={true} />
+            <CardDisplay envelopes={envelopes} isAdmin={false} />
           </Box>
         </Box>
       </Box>
