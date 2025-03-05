@@ -5,7 +5,7 @@ import {useRouter} from 'next/navigation'
 import {useAuthStore} from "@/stores/authStore";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+// import Typography from '@mui/material/Typography'
 import { GiQueenCrown } from "react-icons/gi";
 
 export default function Header() {
