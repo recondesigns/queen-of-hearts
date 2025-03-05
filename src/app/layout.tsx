@@ -7,7 +7,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 export const metadata: Metadata = {
-  title: "Queen of Hearts - Roanoke VFW",
+  title: "Queen of Hearts @ Roanoke VFW",
   description: "Just a way to keep track of the drawings.",
 };
 
