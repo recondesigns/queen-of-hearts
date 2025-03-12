@@ -52,7 +52,6 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
             // sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
             noValidate
             autoComplete="off"
-            // sx={{border: '2px solid orange'}}
           >
             <TextField
               id="new-value"
@@ -74,9 +73,6 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
               alignItems: 'center',
               gap: 2
             }}
-            // sx={{
-            //   border: '2px solid orange'
-            // }}
           >
             <Button variant={'contained'} onClick={handleSavePotValue}>Save value</Button>
             <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
