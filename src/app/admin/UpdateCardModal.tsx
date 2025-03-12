@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 const style = {
@@ -16,9 +17,9 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: '80%',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 2,
+  borderRadius: '6px'
 };
 
 type UpdatePotValueModalProps = {
@@ -53,9 +54,11 @@ const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
     <>
       <Modal open={open} onClose={onClose}>
         <Box sx={style}>
-          {selectedEnvelope && (<p>{`Updating envelope: ${selectedEnvelope.number}`}</p>)}
+
+          {selectedEnvelope && (<Typography variant={'h6'}>{`Updating envelope: ${selectedEnvelope.number}`}</Typography>)}
           <Box
             component={'form'}
+            pt={2}
             // '& > :not(style)': { m: 1, width: '25ch' }
             sx={{width: '100%', }}
             noValidate
@@ -115,7 +118,7 @@ const UpdateCardModal = ({open, onClose}: UpdatePotValueModalProps) => {
               />
             </Box>
           </Box>
-          <Box pt={4} sx={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 2}}>
+          <Box pt={2} sx={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 2}}>
             <Button variant={'contained'} onClick={handleSaveCardUpdate}>Assign card</Button>
             <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
           </Box>
