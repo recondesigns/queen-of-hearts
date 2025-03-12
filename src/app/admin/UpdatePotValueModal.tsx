@@ -4,6 +4,7 @@ import {usePotValueStore} from "@/stores/potValueStore";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 const style = {
@@ -15,6 +16,7 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 2,
+  borderRadius: '6px'
 };
 
 type UpdatePotValueModalProps = {
@@ -43,12 +45,14 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
     <>
       <Modal open={open} onClose={onClose}>
         <Box sx={style}>
-          <p>This is a modal</p>
+          <Typography variant={'h6'}>Update pot value</Typography>
           <Box
+            pt={2}
             component={'form'}
-            sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+            // sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
             noValidate
             autoComplete="off"
+            // sx={{border: '2px solid orange'}}
           >
             <TextField
               id="new-value"
@@ -57,10 +61,26 @@ const UpdatePotValueModal = ({open, onClose}: UpdatePotValueModalProps) => {
               type={'number'}
               value={newValue}
               onChange={handleNewValueChange}
+              sx={{
+                width: '100%'
+              }}
             />
           </Box>
-          <Button variant={'contained'} onClick={handleSavePotValue}>Save value</Button>
-          <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
+          <Box
+            pt={2}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              gap: 2
+            }}
+            // sx={{
+            //   border: '2px solid orange'
+            // }}
+          >
+            <Button variant={'contained'} onClick={handleSavePotValue}>Save value</Button>
+            <Button variant={'outlined'} onClick={onClose}>Cancel</Button>
+          </Box>
         </Box>
       </Modal>
     </>
