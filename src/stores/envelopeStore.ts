@@ -25,7 +25,7 @@ export const useEnvelopeStore = create<EnvelopeStore>((set) => ({
   selectedEnvelope: null,
   fetchEnvelopes: async () => {
 
-    const snapshot = await getDocs(collection(db, 'envelopes2'))
+    const snapshot = await getDocs(collection(db, 'game-envelopes'))
     const envelopes = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data()
@@ -39,7 +39,7 @@ export const useEnvelopeStore = create<EnvelopeStore>((set) => ({
   // TODO: need to change the togglePicked name
   togglePicked: async (id, isPicked: boolean, name: string, suit: string, value: string) => {
     const pickedDate = new Date().toISOString().split('T')[0]
-    const envelopeRef = doc(db, 'envelopes2', id)
+    const envelopeRef = doc(db, 'game-envelopes', id)
     await updateDoc(envelopeRef, {isPicked, name, suit, value, pickedDate})
 
     set((state) => ({
